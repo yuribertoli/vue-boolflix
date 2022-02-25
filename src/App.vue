@@ -24,7 +24,6 @@ export default {
       endpointChooseLanguage: "it-IT",
 
       film: [],
-      stringaRicevuta: ""
     }
   },
   methods: {
@@ -46,8 +45,8 @@ export default {
         console.log(error);
       });
 
-      this.stringaRicevuta = valore;
-      console.log(this.stringaRicevuta);
+      this.endpointSearch = valore;
+      console.log(this.endpointSearch);
     }
   }
 }
