@@ -14,6 +14,14 @@ export default {
   components: {
     MyHeader,
     MyMain
+  },
+  data(){
+    return{
+
+    }
+  },
+  methods: {
+      
   }
 }
 </script>

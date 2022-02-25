@@ -1,10 +1,24 @@
 <template>
-    <header>ciao</header>
+    <header></header>
 </template>
 
 <script>
 export default {
-    name: "MyHeader"
+    name: "MyHeader",
+    props: {
+
+    },  
+    components: {
+    
+    },  
+    data(){
+        return{
+
+        }
+    },
+    methods: {
+      
+    }
 }
 </script>
 

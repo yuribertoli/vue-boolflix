@@ -1,14 +1,23 @@
 <template>
-  <main>ola</main>
+  <main></main>
 </template>
 
 <script>
 export default {
     name: "MyMain",
+    props: {
+
+    },
+    components: {
+    
+    },
     data(){
         return{
 
         }
+    },
+    methods: {
+
     }
 }
 </script>
