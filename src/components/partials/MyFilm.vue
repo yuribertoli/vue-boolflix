@@ -3,15 +3,27 @@
     <ul>
         <li v-for="(film, indice) in mostraRicerca" :key="indice">
 
-            <!-- <img :src="`http://image.tmdb.org/t/p/w${widthMovie}${film.poster_path}`" :alt="film.title"> -->
-            <h3 class="titolo">{{film.title}}</h3>
-            <h3 class="titolo-originale">{{film.original_title}}</h3>
+            <div class="flip">
 
-            <!-- aggiungo le bandiere in base alla lingua, se la lingua selezionata è l'inglese verrà fornito 'en' come risultato, in questo caso assegno la classe necessaria a visualizzare la bandiera UK visto che 'en' non è presente nelle flag-icons. In alternativa concateno l'inizio delle classi con l'appendice della lingua-->
-            <span :class="film.original_language == 'en'?'fi fi-gb' : `fi fi-${film.original_language}`"></span>
+                <div class="front movie">
+                
+                    <img :src="`http://image.tmdb.org/t/p/w${widthMovie}${film.poster_path}`" :alt="film.title">
 
-            <span class="voto">{{film.vote_average}}</span>
+                </div> 
 
+                <div class="back movie">
+
+                    <h3 class="titolo">{{film.title}}</h3>
+                    <h3 class="titolo-originale">{{film.original_title}}</h3>
+
+                    <!-- aggiungo le bandiere in base alla lingua, se la lingua selezionata è l'inglese verrà fornito 'en' come risultato, in questo caso assegno la classe necessaria a visualizzare la bandiera UK visto che 'en' non è presente nelle flag-icons. In alternativa concateno l'inizio delle classi con l'appendice della lingua-->
+                    <span :class="film.original_language == 'en'?'fi fi-gb' : `fi fi-${film.original_language}`"></span>
+
+                    <span class="voto">{{film.vote_average}}</span>
+
+                </div>
+                
+            </div>
         </li>
     </ul>
 
@@ -27,7 +39,7 @@ export default {
 
     data(){
         return{
-            widthMovie: 200
+            widthMovie: 400
         }
     },
 
@@ -51,27 +63,59 @@ ul {
 
     li {
         width: 25%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        border: 1px solid white;
         height: 400px;
-        background-color: black;
+        background-color: transparent;
+        border: 1px solid white;
 
-        .titolo {
-            color: white;
-            text-align: center;
-            font-size: 1rem;
+        &:hover .flip {
+            transform: rotateY(180deg); 
         }
 
-        .titolo-originale {
-            color: white;
-            text-align: center;
-            font-size: 0.8rem;
-        }
+        .flip {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 
-        .voto {
-            color: white;
+            .movie {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                -webkit-backface-visibility: hidden;
+                backface-visibility: hidden;
+            }
+
+            .front img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .back {
+                transform: rotateY(180deg);
+                background-color: black;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                .titolo {
+                    color: white;
+                    text-align: center;
+                    font-size: 1rem;
+                }
+
+                .titolo-originale {
+                    color: white;
+                    text-align: center;
+                    font-size: 0.8rem;
+                }
+
+                .voto {
+                    color: white;
+                }
+            }
         }
     }
 }
