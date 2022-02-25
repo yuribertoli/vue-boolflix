@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <MyHeader @invioRicerca="getAxios"/>
-    <MyMain/>
+    <MyHeader @invioRicerca="getAxios"/> <!-- ricevo da Header il valore della ricerca tramite $emit invioRicerca, chiamo poi la funzione getAxios -->
+    <MyMain :mostraRicerca="film"/> <!-- invio a Main l'array film tramite la props mostraRicerca -->
   </div>
 </template>
 
@@ -30,8 +30,9 @@ export default {
 
     getAxios(valore){
 
+      //popolo la variabile endpointSearch con il valore scritto dall'utente
       this.endpointSearch = valore;
-      console.log(this.endpointSearch);
+      console.log("La ricerca dell'utente è: " + this.endpointSearch);
 
       //creo dinamicamente il percorso 
       axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${this.endpointKey}&language=${this.endpointChooseLanguage}&query=${this.endpointSearch}`)
@@ -43,7 +44,6 @@ export default {
         this.film = response.data.results;
         console.log(this.film);
       })
-
       .catch((error) => {
         console.log(error);
       });
