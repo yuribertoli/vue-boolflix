@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <MyHeader/>
+    <MyHeader @invioRicerca="getAxios"/>
     <MyMain/>
   </div>
 </template>
@@ -19,36 +19,39 @@ export default {
   },
   data(){
     return{
-      endpointBeginning: "https://api.themoviedb.org/3/search/movie?api_key=",
       endpointKey: "2bec85c057b8f21a5e08ba0390ff42d0",
-      endpointQuery: "&query=",
       endpointSearch: "",
-      endpointLanguage: "&language=",
-      endpointChooseLanguage: ""
+      endpointChooseLanguage: "it-IT",
+
+      film: [],
+      stringaRicevuta: ""
     }
   },
   methods: {
 
-      getAxios(){
+    getAxios(valore){
 
-        //creo dinamicamente il percorso 
-        axios.get(this.endpointBeginning + 
-                  this.endpointKey + 
-                  this.endpointQuery + 
-                  this.endpointSearch + 
-                  this.endpointLanguage + 
-                  this.endpointChooseLanguage)
+      //creo dinamicamente il percorso 
+      axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${this.endpointKey}&language=${this.endpointChooseLanguage}&query=${this.endpointSearch}`)
 
-        .then((response) => {
-          console.log(response);
-        })
+      .then((response) => {
+        console.log(response);
 
-        .catch((error) => {
-          console.log(error);
-        });
-      }
+        //prendo solo l'array dei film
+        this.film = response.data.results;
+        console.log(this.film);
+      })
+
+      .catch((error) => {
+        console.log(error);
+      });
+
+      this.stringaRicevuta = valore;
+      console.log(this.stringaRicevuta);
+    }
   }
 }
+
 </script>
 
 <style lang="scss">
