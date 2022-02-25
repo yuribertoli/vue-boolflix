@@ -30,6 +30,9 @@ export default {
 
     getAxios(valore){
 
+      this.endpointSearch = valore;
+      console.log(this.endpointSearch);
+
       //creo dinamicamente il percorso 
       axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${this.endpointKey}&language=${this.endpointChooseLanguage}&query=${this.endpointSearch}`)
 
@@ -44,9 +47,6 @@ export default {
       .catch((error) => {
         console.log(error);
       });
-
-      this.endpointSearch = valore;
-      console.log(this.endpointSearch);
     }
   }
 }
