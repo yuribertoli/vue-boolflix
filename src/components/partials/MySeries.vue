@@ -1,41 +1,27 @@
 <template>
- 
-    <ul>
-        <li v-for="(film, indice) in mostraRicerca" :key="indice">
+  <ul>
+        <li v-for="(serie, indice) in mostraRicercaSerie" :key="indice">
 
-            <!-- <img :src="`http://image.tmdb.org/t/p/w${widthMovie}${film.poster_path}`" :alt="film.title"> -->
-            <h3 class="titolo">{{film.title}}</h3>
-            <h3 class="titolo-originale">{{film.original_title}}</h3>
+            <!-- <img :src="`http://image.tmdb.org/t/p/w${widthMovie}${serie.poster_path}`" :alt="serie.name"> -->
+            <h3 class="titolo">{{serie.name}}</h3>
+            <h3 class="titolo-originale">{{serie.original_name}}</h3>
 
             <!-- aggiungo le bandiere in base alla lingua, se la lingua selezionata è l'inglese verrà fornito 'en' come risultato, in questo caso assegno la classe necessaria a visualizzare la bandiera UK visto che 'en' non è presente nelle flag-icons. In alternativa concateno l'inizio delle classi con l'appendice della lingua-->
-            <span :class="film.original_language == 'en'?'fi fi-gb' : `fi fi-${film.original_language}`"></span>
+            <span :class="serie.original_language == 'en'?'fi fi-gb' : `fi fi-${serie.original_language}`"></span>
 
-            <span class="voto">{{film.vote_average}}</span>
+            <span class="voto">{{serie.vote_average}}</span>
 
         </li>
-    </ul>
-
+  </ul>
 </template>
 
 <script>
 export default {
-    name: "MyFilm",
+    name: "MySeries",
 
     props: {
-        "mostraRicerca": Array,
+        "mostraRicercaSerie": Array
     },
-
-    data(){
-        return{
-            widthMovie: 200
-        }
-    },
-
-    methods: {
-        getClass(){
-            return 
-        }
-    }
 }
 </script>
 

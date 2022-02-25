@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <MyHeader @invioRicerca="getAxios"/> <!-- ricevo da Header il valore della ricerca tramite $emit invioRicerca, chiamo poi la funzione getAxios -->
-    <MyMain :mostraRicerca="film"/> <!-- invio a Main l'array film tramite la props mostraRicerca -->
+    <MyMain :mostraRicerca="film" :mostraRicercaSerie="serie" /> <!-- invio a Main l'array film e serie tramite le props -->
   </div>
 </template>
 
@@ -24,6 +24,7 @@ export default {
       endpointChooseLanguage: "it-IT",
 
       film: [],
+      serie: []
     }
   },
   methods: {
@@ -34,7 +35,7 @@ export default {
       this.endpointSearch = valore;
       console.log("La ricerca dell'utente è: " + this.endpointSearch);
 
-      //creo dinamicamente il percorso 
+      //creo dinamicamente il percorso per i film
       axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${this.endpointKey}&language=${this.endpointChooseLanguage}&query=${this.endpointSearch}`)
 
       .then((response) => {
@@ -43,6 +44,19 @@ export default {
         //prendo solo l'array dei film
         this.film = response.data.results;
         console.log(this.film);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+      //creo dinamicamente il percorso per le serie televisive
+      axios.get(`https://api.themoviedb.org/3/search/tv?api_key=${this.endpointKey}&language=${this.endpointChooseLanguage}&query=${this.endpointSearch}`)
+      .then((response) => {
+        console.log(response);
+
+        //prendo solo l'array delle serie televisive
+        this.serie = response.data.results;
+        console.log(this.serie);
       })
       .catch((error) => {
         console.log(error);
