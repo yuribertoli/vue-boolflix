@@ -21,6 +21,41 @@
 
                     <span class="voto">Voto: {{film.vote_average}}</span>
 
+                    <div class="stars">
+
+                        <div class="stelle" v-if="film.vote_average >= 0 && film.vote_average < 1">
+                            <!-- mezza stella tra 0 e 1 --> <i class="fas fa-star-half-alt"></i> 
+                        </div>
+                        <div class="stelle" v-else-if="film.vote_average >= 1 && film.vote_average < 2">
+                            <!-- una stella tra 1 e 2 --> <i class="fas fa-star"></i>
+                        </div>
+                        <div class="stelle" v-else-if="film.vote_average >= 2 && film.vote_average < 3">
+                            <!-- una stella e mezza tra 2 e 3 --> <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <div class="stelle" v-else-if="film.vote_average >= 3 && film.vote_average < 4">
+                            <!-- due stelle tra 3 e 4 --> <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <div class="stelle" v-else-if="film.vote_average >= 4 && film.vote_average < 5">
+                            <!-- due stelle e mezzo tra 4 e 5 --> <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <div class="stelle" v-else-if="film.vote_average >= 5 && film.vote_average < 6">
+                            <!-- tre stelle tra 5 e 6 --> <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <div class="stelle" v-else-if="film.vote_average >= 6 && film.vote_average < 7">
+                            <!-- tre stelle e mezzo tra 6 e 7 --><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <div class="stelle" v-else-if="film.vote_average >= 7 && film.vote_average < 8">
+                            <!-- quattro stelle tra 7 e 8 --><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <div class="stelle" v-else-if="film.vote_average >= 8 && film.vote_average < 9">
+                            <!-- quattro stelle e mezzo tra 8 e 9 --><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <div class="stelle" v-else-if="film.vote_average >= 9">
+                            <!-- cinque stelle tra 9 e 10 --><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+
+                    </div>
+
                     <h6>Trama</h6>
 
                     <p>{{film.overview}}</p>
@@ -51,81 +86,6 @@ export default {
 
 <style scoped lang="scss">
 @import '~flag-icons/css/flag-icons.css';
+@import '../../assets/style/cards.scss';
 
-ul {
-    width: 70%;
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-
-    li {
-        width: 25%;
-        min-width: 220px;
-        max-width: 250px;
-        height: 350px;
-        background-color: transparent;
-        box-shadow: 0px 0px 10px 0px black;
-
-        &:hover .flip {
-            transform: rotateY(180deg); 
-        }
-
-        .flip {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            transition: transform 0.6s;
-            transform-style: preserve-3d;
-            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-
-            .movie {
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                -webkit-backface-visibility: hidden;
-                backface-visibility: hidden;
-            }
-
-            .front img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-            }
-
-            .back {
-                transform: rotateY(180deg);
-                background-color: black;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                overflow-y: auto;
-                padding: 15px 10px;
-                color: white;
-
-                .titolo {
-                    text-align: center;
-                    font-size: 1rem;
-                }
-
-                .titolo-originale {
-                    text-align: center;
-                    font-size: 0.7rem;
-                    padding: 5px 0;
-                }
-
-                .voto {
-                    padding: 5px 0;
-                }
-
-                p {
-                    font-size: 0.75rem;
-                    text-align: justify;
-                    padding: 10px 2px;
-                }
-            }
-        }
-    }
-}
 </style>
