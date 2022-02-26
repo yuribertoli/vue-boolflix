@@ -36,5 +36,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
+h2 {
+  width: 70%;
+  margin: 0 auto;
+  padding: 50px 0;
+}
 </style>

@@ -2,14 +2,31 @@
   <ul>
         <li v-for="(serie, indice) in mostraRicercaSerie" :key="indice">
 
-            <!-- <img :src="`http://image.tmdb.org/t/p/w${widthMovie}${serie.poster_path}`" :alt="serie.name"> -->
-            <h3 class="titolo">{{serie.name}}</h3>
-            <h3 class="titolo-originale">{{serie.original_name}}</h3>
+            <div class="flip">
 
-            <!-- aggiungo le bandiere in base alla lingua, se la lingua selezionata è l'inglese verrà fornito 'en' come risultato, in questo caso assegno la classe necessaria a visualizzare la bandiera UK visto che 'en' non è presente nelle flag-icons. In alternativa concateno l'inizio delle classi con l'appendice della lingua-->
-            <span :class="serie.original_language == 'en'?'fi fi-gb' : `fi fi-${serie.original_language}`"></span>
+                <div class="front movie">
 
-            <span class="voto">{{serie.vote_average}}</span>
+                    <img :src="`http://image.tmdb.org/t/p/w${widthMovie}${serie.poster_path}`" :alt="serie.name">
+
+                </div>
+
+                <div class="back movie">
+
+                    <h3 class="titolo">{{serie.name}}</h3>
+                    <h3 class="titolo-originale">{{serie.original_name}}</h3>
+
+                    <!-- aggiungo le bandiere in base alla lingua, se la lingua selezionata è l'inglese verrà fornito 'en' come risultato, in questo caso assegno la classe necessaria a visualizzare la bandiera UK visto che 'en' non è presente nelle flag-icons. In alternativa concateno l'inizio delle classi con l'appendice della lingua-->
+                    <span :class="serie.original_language == 'en'?'fi fi-gb' : `fi fi-${serie.original_language}`"></span>
+
+                    <span class="voto">{{serie.vote_average}}</span>
+
+                    <h6>Trama</h6>
+
+                    <p>{{serie.overview}}</p>
+
+                </div>
+
+            </div>
 
         </li>
   </ul>
@@ -22,6 +39,12 @@ export default {
     props: {
         "mostraRicercaSerie": Array
     },
+
+    data(){
+        return{
+            widthMovie: 342
+        }
+    }
 }
 </script>
 
@@ -33,31 +56,74 @@ ul {
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
 
     li {
         width: 25%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        border: 1px solid white;
-        height: 400px;
-        background-color: black;
+        min-width: 220px;
+        max-width: 250px;
+        height: 350px;
+        background-color: transparent;
+        box-shadow: 0px 0px 10px 0px black;
 
-        .titolo {
-            color: white;
-            text-align: center;
-            font-size: 1rem;
+        &:hover .flip {
+            transform: rotateY(180deg); 
         }
 
-        .titolo-originale {
-            color: white;
-            text-align: center;
-            font-size: 0.8rem;
-        }
+        .flip {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 
-        .voto {
-            color: white;
+            .movie {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                -webkit-backface-visibility: hidden;
+                backface-visibility: hidden;
+            }
+
+            .front img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .back {
+                transform: rotateY(180deg);
+                background-color: black;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                overflow-y: auto;
+                padding: 15px 10px;
+                color: white;
+
+                .titolo {
+                    text-align: center;
+                    font-size: 1rem;
+                }
+
+                .titolo-originale {
+                    text-align: center;
+                    font-size: 0.7rem;
+                    padding: 5px 0;
+                }
+
+                .voto {
+                    padding: 5px 0;
+                }
+
+                p {
+                    font-size: 0.75rem;
+                    text-align: justify;
+                    padding: 10px 2px;
+                }
+            }
         }
     }
 }

@@ -19,7 +19,11 @@
                     <!-- aggiungo le bandiere in base alla lingua, se la lingua selezionata è l'inglese verrà fornito 'en' come risultato, in questo caso assegno la classe necessaria a visualizzare la bandiera UK visto che 'en' non è presente nelle flag-icons. In alternativa concateno l'inizio delle classi con l'appendice della lingua-->
                     <span :class="film.original_language == 'en'?'fi fi-gb' : `fi fi-${film.original_language}`"></span>
 
-                    <span class="voto">{{film.vote_average}}</span>
+                    <span class="voto">Voto: {{film.vote_average}}</span>
+
+                    <h6>Trama</h6>
+
+                    <p>{{film.overview}}</p>
 
                 </div>
                 
@@ -39,13 +43,7 @@ export default {
 
     data(){
         return{
-            widthMovie: 400
-        }
-    },
-
-    methods: {
-        getClass(){
-            return 
+            widthMovie: 342
         }
     }
 }
@@ -59,13 +57,16 @@ ul {
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
 
     li {
         width: 25%;
-        height: 400px;
+        min-width: 220px;
+        max-width: 250px;
+        height: 350px;
         background-color: transparent;
-        border: 1px solid white;
+        box-shadow: 0px 0px 10px 0px black;
 
         &:hover .flip {
             transform: rotateY(180deg); 
@@ -99,21 +100,29 @@ ul {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+                overflow-y: auto;
+                padding: 15px 10px;
+                color: white;
 
                 .titolo {
-                    color: white;
                     text-align: center;
                     font-size: 1rem;
                 }
 
                 .titolo-originale {
-                    color: white;
                     text-align: center;
-                    font-size: 0.8rem;
+                    font-size: 0.7rem;
+                    padding: 5px 0;
                 }
 
                 .voto {
-                    color: white;
+                    padding: 5px 0;
+                }
+
+                p {
+                    font-size: 0.75rem;
+                    text-align: justify;
+                    padding: 10px 2px;
                 }
             }
         }
