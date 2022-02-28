@@ -58,10 +58,10 @@
             <p>{{film.overview}}</p>
 
             <!-- cliccando su di esso non lo rendo più disponibile -->
-            <h4 v-if="!moreInfos" class="other-infos" @click="getAxios(film.id)"><i class="fa-solid fa-arrow-right"></i> Altre Info <i class="fa-solid fa-arrow-left"></i></h4>
+            <h4 v-show="!moreInfos" class="other-infos" @click="getAxios(film.id)"><i class="fa-solid fa-arrow-right"></i> Altre Info <i class="fa-solid fa-arrow-left"></i></h4>
 
             <!-- mostro il contenuto solo dopo il click su Altre Info -->
-            <div v-if="moreInfos" class="disp-none">
+            <div v-show="moreInfos" class="disp-none">
 
                 <h6>Generi del film</h6>
 
