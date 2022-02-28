@@ -60,8 +60,9 @@
 
                     <p>{{film.overview}}</p>
 
-                    <h4 class="other-infos" @click="getAxios(film.id)"><i class="fa-solid fa-arrow-right"></i> Altre info <i class="fa-solid fa-arrow-left"></i></h4>
+                    <h4 class="other-infos" @click="getAxios(film.id)"><i class="fa-solid fa-arrow-right"></i> Altre Info <i class="fa-solid fa-arrow-left"></i></h4>
 
+                    <!-- mostro il contenuto solo dopo il click su Altre Info -->
                     <div v-if="moreInfos" class="disp-none">
 
                         <h5>Generi del film</h5>
@@ -75,7 +76,7 @@
 
                         <h5>Attori presenti</h5>
 
-                        <!-- ciclo 5 elementi dell'array attori e ne ricavo il nome -->
+                        <!-- ciclo i primi 5 elementi dell'array attori e ne ricavo il nome -->
                         <ul class="attori-titolo">
                             <li v-for="(attore, index) in attoriArray.slice(0, 5)" :key="index">
                                 {{attore.name}}
@@ -115,7 +116,7 @@ export default {
     methods: {
     
         getAxios(id){
-            
+
             this.moreInfos = true;
 
             axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${this.endpointKey}&append_to_response=credits`)
