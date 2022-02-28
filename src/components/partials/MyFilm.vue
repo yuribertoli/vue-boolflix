@@ -60,12 +60,13 @@
 
                     <p>{{film.overview}}</p>
 
-                    <h4 class="other-infos" @click="getAxios(film.id)"><i class="fa-solid fa-arrow-right"></i> Altre Info <i class="fa-solid fa-arrow-left"></i></h4>
+                    <!-- cliccando su di esso non lo rendo più disponibile -->
+                    <h4 v-if="!moreInfos" class="other-infos" @click="getAxios(film.id)"><i class="fa-solid fa-arrow-right"></i> Altre Info <i class="fa-solid fa-arrow-left"></i></h4>
 
                     <!-- mostro il contenuto solo dopo il click su Altre Info -->
                     <div v-if="moreInfos" class="disp-none">
 
-                        <h5>Generi del film</h5>
+                        <h6>Generi del film</h6>
 
                         <!-- ciclo ogni elemento dell'array generi e ne ricavo il nome -->
                         <ul class="generi-titolo">
@@ -74,7 +75,7 @@
                             </li>
                         </ul>
 
-                        <h5>Attori presenti</h5>
+                        <h6>Attori presenti</h6>
 
                         <!-- ciclo i primi 5 elementi dell'array attori e ne ricavo il nome -->
                         <ul class="attori-titolo">
