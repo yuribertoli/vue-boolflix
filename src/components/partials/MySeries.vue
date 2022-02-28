@@ -18,8 +18,19 @@ export default {
         MyCardSeries
     },
 
+    data(){
+        return{
+
+        }
+    },
+
     props: {
-        "mostraRicercaSerie": Array
+        "mostraRicercaSerie": Array,
+        'tvChosen': Number
+    },
+
+    computed: {
+
     }
 }
 </script>

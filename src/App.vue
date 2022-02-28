@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <MyHeader @invioRicerca="getAxios"/> <!-- ricevo da Header il valore della ricerca tramite $emit invioRicerca, chiamo poi la funzione getAxios -->
-    <MyMain :mostraRicerca="film" :mostraRicercaSerie="serie" /> <!-- invio a Main l'array film e serie tramite le props -->
+    <MyHeader @invioRicerca="getAxios" @genMovie="getMovie" @genSeries="getSeries"/> <!-- ricevo da Header il valore della ricerca tramite $emit invioRicerca, chiamo poi la funzione getAxios --> <!-- ricevo anche il genere da filtrare serie/film -->
+    <MyMain :mostraRicerca="film" :mostraRicercaSerie="serie" :tvChosen="serieScelta" :movieChosen="filmScelto"/> <!-- invio a Main l'array film e serie tramite le props --> <!-- invio a Main i generi scelti -->
   </div>
 </template>
 
@@ -24,7 +24,9 @@ export default {
       endpointChooseLanguage: "it-IT",
 
       film: [],
-      serie: []
+      serie: [],
+      serieScelta: null,
+      filmScelto: null
     }
   },
   methods: {
@@ -61,6 +63,18 @@ export default {
       .catch((error) => {
         console.log(error);
       });
+    },
+
+    //salvo il valore della serie scelta in una variabile da inviare a Main
+    getSeries(valore){
+      this.serieScelta = valore;
+      console.log(this.serieScelta);
+    },
+
+    //salvo il valore del film scelto in una variabile da inviare a Main
+    getMovie(valore){
+      this.filmScelto = valore;
+      console.log(this.filmScelto);
     }
   }
 }
