@@ -90,19 +90,25 @@ ul {
                     cursor: pointer;
                 }
 
-                .generi-titolo, .attori-titolo {
-                    padding: 10px 0 30px;
+                .disp-none {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
 
-                    li {
-                        text-align: center;
-                        font-size: 0.8rem;
-                        padding: 10px;
-                        height: unset;
-                        width: unset;
-                        box-shadow: unset;
-                        padding: 3px 0;
+                    .generi-titolo, .attori-titolo {
+                        padding: 10px 0 30px;
+
+                        li {
+                            text-align: center;
+                            font-size: 0.8rem;
+                            padding: 10px;
+                            height: unset;
+                            width: unset;
+                            box-shadow: unset;
+                            padding: 3px 0;
+                        }
                     }
-                }
+                }                
             }
         }
     }

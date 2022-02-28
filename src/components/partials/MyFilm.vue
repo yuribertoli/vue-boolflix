@@ -62,23 +62,27 @@
 
                     <h4 class="other-infos" @click="getAxios(film.id)"><i class="fa-solid fa-arrow-right"></i> Altre info <i class="fa-solid fa-arrow-left"></i></h4>
 
-                    <h5>Generi del film</h5>
+                    <div v-if="moreInfos" class="disp-none">
 
-                    <!-- ciclo ogni elemento dell'array generi e ne ricavo il nome -->
-                    <ul class="generi-titolo">
-                        <li v-for="(genere, index) in generiArray" :key="index">
-                            {{genere.name}}
-                        </li>
-                    </ul>
+                        <h5>Generi del film</h5>
 
-                    <h5>Attori presenti</h5>
+                        <!-- ciclo ogni elemento dell'array generi e ne ricavo il nome -->
+                        <ul class="generi-titolo">
+                            <li v-for="(genere, index) in generiArray" :key="index">
+                                {{genere.name}}
+                            </li>
+                        </ul>
 
-                    <!-- ciclo 5 elementi dell'array attori e ne ricavo il nome -->
-                    <ul class="attori-titolo">
-                        <li v-for="(attore, index) in attoriArray.slice(0, 5)" :key="index">
-                            {{attore.name}}
-                        </li>
-                    </ul>
+                        <h5>Attori presenti</h5>
+
+                        <!-- ciclo 5 elementi dell'array attori e ne ricavo il nome -->
+                        <ul class="attori-titolo">
+                            <li v-for="(attore, index) in attoriArray.slice(0, 5)" :key="index">
+                                {{attore.name}}
+                            </li>
+                        </ul>
+
+                    </div>                    
 
                 </div>
                 
@@ -104,12 +108,16 @@ export default {
             endpointKey: "2bec85c057b8f21a5e08ba0390ff42d0",
             attoriArray: [],
             generiArray: [],
+            moreInfos: false
         }
     },
 
     methods: {
     
         getAxios(id){
+            
+            this.moreInfos = true;
+
             axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${this.endpointKey}&append_to_response=credits`)
 
             .then((response) => {
