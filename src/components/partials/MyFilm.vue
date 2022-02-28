@@ -73,9 +73,9 @@
 
                     <h5>Attori presenti</h5>
 
-                    <!-- ciclo ogni elemento dell'array attori e ne ricavo il nome -->
+                    <!-- ciclo 5 elementi dell'array attori e ne ricavo il nome -->
                     <ul class="attori-titolo">
-                        <li v-for="(attore, index) in attoriArray" :key="index">
+                        <li v-for="(attore, index) in attoriArray.slice(0, 5)" :key="index">
                             {{attore.name}}
                         </li>
                     </ul>
