@@ -25,57 +25,37 @@ export default {
         'movieChosen': Number
     },
 
+    data(){
+        return{
+            ricercaUtente: this.mostraRicerca,
+            filmScelto: this.movieChosen
+        }
+    },
+
     computed: {
         filtroGeneri(){
             if (this.movieChosen == 0) {
 
-                return this.$props.mostraRicerca;
+                return this.ricercaUtente;
 
             } else {
 
                 let filtro = [];
 
-                for (let i=0; i<this.$props.mostraRicerca.length; i++){
+                for (let i=0; i<this.ricercaUtente.length; i++){
 
-                    if (this.$props.mostraRicerca[i].genre_ids.includes(this.$props.movieChosen)){
-                        filtro.push(this.$props.mostraRicerca[i])
+                    if (this.ricercaUtente[i].genre_ids.includes(this.filmScelto)){
+                        filtro.push(this.ricercaUtente[i])
                     }
                 }
 
-                this.$props.mostraRicerca = filtro;
+                this.ricercaUtente = filtro;
 
                 console.log(filtro);
                 return filtro;
             } 
         }
-    },
-
-    /* computed: {
-
-        generiFiltrati(){
-
-            console.log(this.$props.mostraRicerca);
-
-            if (this.movieChosen == 0) {
-
-                return this.mostraRicerca;
-
-            } else {
-
-                let filtro = [];
-
-                for (let i=0; i<20; i++){
-
-                    if (this.mostraRicerca[i].genre_ids.includes(this.movieChosen)){
-                        filtro.push(this.mostraRicerca[i])
-                    }
-                }
-
-                console.log(filtro);
-                return filtro;
-            } 
-        }
-    } */
+    }
 }
 </script>
 
