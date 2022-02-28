@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import MyCardSeries from './MyCardSeries.vue'
+import MyCardSeries from './cards/MyCardSeries.vue'
 
 export default {
     name: "MySeries",

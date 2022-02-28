@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import MyCard from './MyCard.vue'
+import MyCard from './cards/MyCard.vue'
 
 export default {
     name: "MyFilm",

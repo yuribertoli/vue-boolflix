@@ -136,5 +136,5 @@ export default {
 
 <style scoped lang="scss">
 @import '~flag-icons/css/flag-icons.css';
-@import '../../assets/style/cards.scss';
+@import '../../../assets/style/cards.scss';
 </style>
