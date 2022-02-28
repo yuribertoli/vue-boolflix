@@ -1,10 +1,11 @@
 <template>
-    <header> <!-- richiamo la funzione ricerca sia al click del bottone, sia alla pressione del tasto Enter(Invio) -->
+    <header> 
 
         <div class="left-header">
             <h1>BOOLFLIX</h1>
         </div>
-
+        
+        <!-- richiamo la funzione ricerca sia al click del bottone, sia alla pressione del tasto Enter(Invio) -->
         <div class="right-header">
             <input v-on:keyup.enter="ricerca" type="text" v-model="cerca">
             <button @click="ricerca">CERCA</button>

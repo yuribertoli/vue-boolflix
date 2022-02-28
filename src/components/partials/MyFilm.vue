@@ -60,15 +60,37 @@
 
                     <p>{{film.overview}}</p>
 
+                    <h4 class="other-infos" @click="getAxios(film.id)"><i class="fa-solid fa-arrow-right"></i> Altre info <i class="fa-solid fa-arrow-left"></i></h4>
+
+                    <h5>Generi del film</h5>
+
+                    <!-- ciclo ogni elemento dell'array generi e ne ricavo il nome -->
+                    <ul class="generi-titolo">
+                        <li v-for="(genere, index) in generiArray" :key="index">
+                            {{genere.name}}
+                        </li>
+                    </ul>
+
+                    <h5>Attori presenti</h5>
+
+                    <!-- ciclo ogni elemento dell'array attori e ne ricavo il nome -->
+                    <ul class="attori-titolo">
+                        <li v-for="(attore, index) in attoriArray" :key="index">
+                            {{attore.name}}
+                        </li>
+                    </ul>
+
                 </div>
                 
-            </div>
+            </div>          
         </li>
     </ul>
 
 </template>
 
 <script>
+const axios = require('axios').default
+
 export default {
     name: "MyFilm",
 
@@ -78,7 +100,32 @@ export default {
 
     data(){
         return{
-            widthMovie: 342
+            widthMovie: 342,
+            endpointKey: "2bec85c057b8f21a5e08ba0390ff42d0",
+            attoriArray: [],
+            generiArray: [],
+        }
+    },
+
+    methods: {
+    
+        getAxios(id){
+            axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${this.endpointKey}&append_to_response=credits`)
+
+            .then((response) => {
+                console.log(response);
+
+                //prendo l'array dei generi del film
+                this.generiArray = response.data.genres;
+                console.log(this.generiArray);
+
+                //prendo l'array degli attori presenti nel film
+                this.attoriArray = response.data.credits.cast;
+                console.log(this.attoriArray);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
         }
     }
 }

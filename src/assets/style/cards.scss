@@ -70,7 +70,7 @@ ul {
                 .stelle {
                     display: flex;
                     justify-content: center;
-
+                
                     svg {
                         color: yellow;
                         font-size: 0.8rem;
@@ -82,6 +82,26 @@ ul {
                     font-size: 0.75rem;
                     text-align: justify;
                     padding: 10px 2px;
+                }
+
+                .other-infos {
+                    font-size: 0.9rem;
+                    margin-bottom: 15px;
+                    cursor: pointer;
+                }
+
+                .generi-titolo, .attori-titolo {
+                    padding: 10px 0 30px;
+
+                    li {
+                        text-align: center;
+                        font-size: 0.8rem;
+                        padding: 10px;
+                        height: unset;
+                        width: unset;
+                        box-shadow: unset;
+                        padding: 3px 0;
+                    }
                 }
             }
         }
