@@ -12,7 +12,7 @@
             <div class="contain">
                 <i class="fas fa-chevron-down"></i>
                 <h5 id="title-sel">Selezioni:</h5>
-                <h5>{{this.lingua.linguaText == null? "Inglese" : this.lingua.linguaText}}</h5>
+                <h5>{{this.lingua.linguaText == null? "Inglese" : this.lingua.linguaText}}</h5> <!-- se la ricerca della lingua non è stata fatta, lascio inglese come default (l'opzione inglese ha valore vuoto, quindi null) -->
                 <h3>Scegli Lingua</h3>
                 <select v-model="lingua" @change="$emit('langSelected', lingua.valoreLingua)">
                     <option v-for="(language, index) in lingueDaMostrare" :key="index" :value="language">{{language.linguaText}}</option>
@@ -22,7 +22,7 @@
             <!-- prendo il valore dell'opzione selezionata tramite v-model, invio ad App tramite $emit il cambio di valore --> 
             <div class="contain">
                 <i class="fas fa-chevron-down"></i>
-                <h5>{{this.selectMovie.name == null? "Tutti" : this.selectMovie.name}}</h5>
+                <h5>{{this.selectMovie.name == null? "Tutti" : this.selectMovie.name}}</h5> <!-- se la ricerca del genere non è stata fatta, o è impostata sulla prima opzione "Tutti i film", lascio "Tutti" come default (la prima opzione ha un value = 0, quindi null) -->
                 <h3>Generi Film</h3>
                 <select v-model="selectMovie" @change="$emit('genMovie', selectMovie.id)">
                     <option value="0">Tutti i Film</option>
@@ -32,7 +32,7 @@
 
             <div class="contain">
                 <i class="fas fa-chevron-down"></i>
-                <h5>{{this.selectSerie.name  == null? "Tutti" : this.selectSerie.name}}</h5>
+                <h5>{{this.selectSerie.name  == null? "Tutti" : this.selectSerie.name}}</h5> <!-- se la ricerca del genere non è stata fatta, o è impostata sulla prima opzione "Tutte le serie", lascio "Tutti" come default (la prima opzione ha un value = 0, quindi null) -->
                 <h3>Generi Serie TV</h3> 
                 <select v-model="selectSerie" @change="$emit('genSeries', selectSerie.id)">
                     <option value="0">Tutte le Serie TV</option>
