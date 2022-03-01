@@ -21,21 +21,21 @@
             <!-- prendo il valore dell'opzione selezionata tramite v-model, invio ad App tramite $emit il cambio di valore --> 
             <div class="contain">
                 <i class="fas fa-chevron-down"></i>
-                <h5>Selezione: {{this.selectMovie}}</h5>
+                <h5>Selezione: {{this.selectMovie.name}}</h5>
                 <h3>Generi Film</h3>
-                <select v-model="selectMovie" @change="$emit('genMovie', selectMovie)">
+                <select v-model="selectMovie" @change="$emit('genMovie', selectMovie.id)">
                     <option value="0">Tutti i Film</option>
-                    <option v-for="(genere, indice) in generiFilm" :key="indice" :value="genere.id">{{genere.name}}</option>
+                    <option v-for="(genere, indice) in generiFilm" :key="indice" :value="genere">{{genere.name}}</option>
                 </select>                                   
             </div>
 
             <div class="contain">
                 <i class="fas fa-chevron-down"></i>
-                <h5>Selezione: {{this.selectSerie}}</h5>
+                <h5>Selezione: {{this.selectSerie.name}}</h5>
                 <h3>Generi Serie TV</h3> 
-                <select v-model="selectSerie" @change="$emit('genSeries', selectSerie)">
+                <select v-model="selectSerie" @change="$emit('genSeries', selectSerie.id)">
                     <option value="0">Tutte le Serie TV</option>
-                    <option v-for="(genere, indice) in generiSerie" :key="indice" :value="genere.id">{{genere.name}}</option>
+                    <option v-for="(genere, indice) in generiSerie" :key="indice" :value="genere">{{genere.name}}</option>
                 </select>
             </div>
 
@@ -58,8 +58,8 @@ export default {
             endpointKey: "2bec85c057b8f21a5e08ba0390ff42d0",
             generiFilm: [],
             generiSerie: [],
-            selectSerie: null,
-            selectMovie: null,
+            selectSerie: "",
+            selectMovie: "",
             lingua: "",
             lingueDaMostrare: [
                 {valoreLingua: "it-IT", linguaText: "Italiano"},
