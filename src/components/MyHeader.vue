@@ -11,19 +11,19 @@
             <!-- prendo il valore dell'opzione selezionata tramite v-model, invio ad App tramite $emit il cambio di valore --> 
             <div class="contain">
                 <i class="fas fa-chevron-down"></i>
-                <h3>Generi Serie TV</h3> 
-                <select v-model.number="selectSerie" @change="$emit('genSeries', selectSerie)">
-                    <option value="0">Tutte le Serie TV</option>
-                    <option v-for="(genere, indice) in generiSerie" :key="indice" :value="genere.id">{{genere.name}}</option>
+                <h3>Generi Film</h3>
+                <select v-model.number="selectMovie" @change="$emit('genMovie', selectMovie)">
+                    <option value="0">Tutti i Film</option>
+                    <option v-for="(genere, indice) in generiFilm" :key="indice" :value="genere.id">{{genere.name}}</option>
                 </select>
             </div>
 
             <div class="contain">
                 <i class="fas fa-chevron-down"></i>
-                <h3>Generi Film</h3>
-                <select v-model.number="selectMovie" @change="$emit('genMovie', selectMovie)">
-                    <option value="0">Tutti i Film</option>
-                    <option v-for="(genere, indice) in generiFilm" :key="indice" :value="genere.id">{{genere.name}}</option>
+                <h3>Generi Serie TV</h3> 
+                <select v-model.number="selectSerie" @change="$emit('genSeries', selectSerie)">
+                    <option value="0">Tutte le Serie TV</option>
+                    <option v-for="(genere, indice) in generiSerie" :key="indice" :value="genere.id">{{genere.name}}</option>
                 </select>
             </div>
 
