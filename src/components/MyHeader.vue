@@ -8,6 +8,24 @@
         <!-- richiamo la funzione ricerca sia al click del bottone, sia alla pressione del tasto Enter(Invio) -->
         <div class="right-header">
 
+            <div class="contain">
+                <i class="fas fa-chevron-down"></i>
+                <h3>Scegli Lingua</h3>
+                <select v-model="lingua" @change="$emit('langSelected', lingua)">
+                    <option value="it-IT">Italiano</option>
+                    <option value="">Inglese</option>
+                    <option value="es-ES">Spagnolo</option>
+                    <option value="pt-PT">Portoghese</option>
+                    <option value="fr-FR">Francese</option>
+                    <option value="de-DE">Tedesco</option>
+                    <option value="ru-RU">Russo</option>
+                    <option value="zh-ZH">Cinese</option>
+                    <option value="hi-HI">Hindi</option>
+                    <option value="ja-JA">Giapponese</option>
+                    <option value="ar-AR">Arabo</option>
+                </select>
+            </div>
+
             <!-- prendo il valore dell'opzione selezionata tramite v-model, invio ad App tramite $emit il cambio di valore --> 
             <div class="contain">
                 <i class="fas fa-chevron-down"></i>
@@ -47,7 +65,8 @@ export default {
             generiFilm: [],
             generiSerie: [],
             selectSerie: null,
-            selectMovie: null
+            selectMovie: null,
+            lingua: ""
         }
     },
 
@@ -149,7 +168,7 @@ header {
                 top: 2.5px;
                 right: 25.5px;
                 color: #e3e3e3;
-                pointer-events: none;
+                pointer-events: none; /* permette di cliccare sotto questo elemento, rendendolo invisibile agli eventi */
             }
         }
 
