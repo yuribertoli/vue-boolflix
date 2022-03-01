@@ -9,17 +9,23 @@
         <div class="right-header">
 
             <!-- prendo il valore dell'opzione selezionata tramite v-model, invio ad App tramite $emit il cambio di valore --> 
-            <h3>Generi Serie TV</h3> 
-            <select v-model.number="selectSerie" @change="$emit('genSeries', selectSerie)">
-                <option value="0">Tutte le Serie TV</option>
-                <option v-for="(genere, indice) in generiSerie" :key="indice" :value="genere.id">{{genere.name}}</option>
-            </select>
+            <div class="contain">
+                <i class="fas fa-chevron-down"></i>
+                <h3>Generi Serie TV</h3> 
+                <select v-model.number="selectSerie" @change="$emit('genSeries', selectSerie)">
+                    <option value="0">Tutte le Serie TV</option>
+                    <option v-for="(genere, indice) in generiSerie" :key="indice" :value="genere.id">{{genere.name}}</option>
+                </select>
+            </div>
 
-            <h3>Generi Film</h3>
-            <select v-model.number="selectMovie" @change="$emit('genMovie', selectMovie)">
-                <option value="0">Tutti i Film</option>
-                <option v-for="(genere, indice) in generiFilm" :key="indice" :value="genere.id">{{genere.name}}</option>
-            </select>
+            <div class="contain">
+                <i class="fas fa-chevron-down"></i>
+                <h3>Generi Film</h3>
+                <select v-model.number="selectMovie" @change="$emit('genMovie', selectMovie)">
+                    <option value="0">Tutti i Film</option>
+                    <option v-for="(genere, indice) in generiFilm" :key="indice" :value="genere.id">{{genere.name}}</option>
+                </select>
+            </div>
 
             <input v-on:keyup.enter="ricerca" type="text" v-model="cerca">
             <button @click="ricerca">CERCA</button>
@@ -118,13 +124,33 @@ header {
             font-size: 0.9rem;
         }
 
-        select {
-            width: 23px;
-            background-color: white;
-            border-radius: 30%;
-            border: 2px solid grey;
-            margin: 0 20px 0 5px;
-            cursor: pointer;
+        .contain {
+            display: flex;
+            align-items: center;
+            position: relative;
+
+                select {
+                width: 23px;
+                background-color: black;
+                border-radius: 30%;
+                border: 2px solid grey;
+                margin: 0 20px 0 5px;
+                cursor: pointer;
+
+                option {
+                    color: white;
+                }
+            }
+
+            svg {
+                position: absolute;
+                font-size: 0.8rem;
+                z-index: 88;
+                top: 2.5px;
+                right: 25.5px;
+                color: #e3e3e3;
+                pointer-events: none;
+            }
         }
 
         input {
