@@ -8,36 +8,38 @@
         <!-- richiamo la funzione ricerca sia al click del bottone, sia alla pressione del tasto Enter(Invio) -->
         <div class="right-header">
 
-            <!-- creo una lista di lingue tra cui l'utente puo' scegliere per le descrizioni dei film/serie -->
-            <div class="contain">
-                <i class="fas fa-chevron-down"></i>
-                <h5 id="title-sel">Selezioni:</h5>
-                <h5>{{this.lingua.linguaText == null? "Inglese" : this.lingua.linguaText}}</h5> <!-- se la ricerca della lingua non è stata fatta, lascio inglese come default (l'opzione inglese ha valore vuoto, quindi null) -->
-                <h3>Scegli Lingua</h3>
-                <select v-model="lingua" @change="$emit('langSelected', lingua.valoreLingua)">
-                    <option v-for="(language, index) in lingueDaMostrare" :key="index" :value="language">{{language.linguaText}}</option>
-                </select>                                                           <!-- setto il value come un oggetto per poterne ricavare sia il valore numerico che il testo mostrato in contesti diversi -->
-            </div>
+            <div class="mediaquery">
+                <!-- creo una lista di lingue tra cui l'utente puo' scegliere per le descrizioni dei film/serie -->
+                <div class="contain">
+                    <i class="fas fa-chevron-down"></i>
+                    <h5 id="title-sel">Selezioni:</h5>
+                    <h5>{{this.lingua.linguaText == null? "Inglese" : this.lingua.linguaText}}</h5> <!-- se la ricerca della lingua non è stata fatta, lascio inglese come default (l'opzione inglese ha valore vuoto, quindi null) -->
+                    <h3 id="lingua"><span>Scegli</span> Lingua</h3>
+                    <select v-model="lingua" @change="$emit('langSelected', lingua.valoreLingua)">
+                        <option v-for="(language, index) in lingueDaMostrare" :key="index" :value="language">{{language.linguaText}}</option>
+                    </select>                                                           <!-- setto il value come un oggetto per poterne ricavare sia il valore numerico che il testo mostrato in contesti diversi -->
+                </div>
 
-            <!-- prendo il valore dell'opzione selezionata tramite v-model, invio ad App tramite $emit il cambio di valore --> 
-            <div class="contain">
-                <i class="fas fa-chevron-down"></i>
-                <h5>{{this.selectMovie.name == null? "Tutti" : this.selectMovie.name}}</h5> <!-- se la ricerca del genere non è stata fatta, o è impostata sulla prima opzione "Tutti i film", lascio "Tutti" come default (la prima opzione ha un value = 0, quindi null) -->
-                <h3>Generi Film</h3>
-                <select v-model="selectMovie" @change="$emit('genMovie', selectMovie.id)">
-                    <option value="0">Tutti i Film</option>
-                    <option v-for="(genere, indice) in generiFilm" :key="indice" :value="genere">{{genere.name}}</option>
-                </select>                                                        <!-- setto il value come un oggetto per poterne ricavare sia il valore numerico che il testo mostrato in contesti diversi -->
-            </div>
+                <!-- prendo il valore dell'opzione selezionata tramite v-model, invio ad App tramite $emit il cambio di valore --> 
+                <div class="contain">
+                    <i class="fas fa-chevron-down"></i>
+                    <h5>{{this.selectMovie.name == null? "Tutti" : this.selectMovie.name}}</h5> <!-- se la ricerca del genere non è stata fatta, o è impostata sulla prima opzione "Tutti i film", lascio "Tutti" come default (la prima opzione ha un value = 0, quindi null) -->
+                    <h3 id="film"><span>Generi</span> Film</h3>
+                    <select v-model="selectMovie" @change="$emit('genMovie', selectMovie.id)">
+                        <option value="0">Tutti i Film</option>
+                        <option v-for="(genere, indice) in generiFilm" :key="indice" :value="genere">{{genere.name}}</option>
+                    </select>                                                        <!-- setto il value come un oggetto per poterne ricavare sia il valore numerico che il testo mostrato in contesti diversi -->
+                </div>
 
-            <div class="contain">
-                <i class="fas fa-chevron-down"></i>
-                <h5>{{this.selectSerie.name  == null? "Tutti" : this.selectSerie.name}}</h5> <!-- se la ricerca del genere non è stata fatta, o è impostata sulla prima opzione "Tutte le serie", lascio "Tutti" come default (la prima opzione ha un value = 0, quindi null) -->
-                <h3>Generi Serie TV</h3> 
-                <select v-model="selectSerie" @change="$emit('genSeries', selectSerie.id)">
-                    <option value="0">Tutte le Serie TV</option>
-                    <option v-for="(genere, indice) in generiSerie" :key="indice" :value="genere">{{genere.name}}</option>
-                </select>                                                         <!-- setto il value come un oggetto per poterne ricavare sia il valore numerico che il testo mostrato in contesti diversi -->
+                <div class="contain">
+                    <i class="fas fa-chevron-down"></i>
+                    <h5>{{this.selectSerie.name  == null? "Tutti" : this.selectSerie.name}}</h5> <!-- se la ricerca del genere non è stata fatta, o è impostata sulla prima opzione "Tutte le serie", lascio "Tutti" come default (la prima opzione ha un value = 0, quindi null) -->
+                    <h3 id="serie"><span>Generi</span> Serie TV</h3> 
+                    <select v-model="selectSerie" @change="$emit('genSeries', selectSerie.id)">
+                        <option value="0">Tutte le Serie TV</option>
+                        <option v-for="(genere, indice) in generiSerie" :key="indice" :value="genere">{{genere.name}}</option>
+                    </select>                                                         <!-- setto il value come un oggetto per poterne ricavare sia il valore numerico che il testo mostrato in contesti diversi -->
+                </div>
             </div>
 
             <input v-on:keyup.enter="ricerca" type="text" v-model="cerca" placeholder="Cerca un titolo">
@@ -146,50 +148,55 @@ header {
         display: flex;
         align-items: center;
 
-        h3 {
-            color: white;
-            font-size: 0.9rem;
-        }
-
-        .contain {
+        .mediaquery {
             display: flex;
-            align-items: center;
-            position: relative;
 
-                h5 {
+            .contain {
+                display: flex;
+                align-items: center;
+                position: relative;
+
+                    h3, span {
+                        color: white;
+                        font-size: 0.9rem;
+                        font-weight: 600;
+                    }
+
+                    h5 {
+                        position: absolute;
+                        color: gray;
+                        left: -1px;
+                        top: 18px;
+                        width: 130px;
+                        font-size: 0.7rem;
+                    }
+
+                    #title-sel {
+                        left: -60px;
+                    }
+
+                    select {
+                    width: 23px;
+                    background-color: black;
+                    border-radius: 30%;
+                    border: 2px solid grey;
+                    margin: 0 20px 0 5px;
+                    cursor: pointer;
+
+                    option {
+                        color: white;
+                    }
+                }
+
+                svg {
                     position: absolute;
-                    color: gray;
-                    left: -1px;
-                    top: 18px;
-                    width: 130px;
-                    font-size: 0.7rem;
+                    font-size: 0.8rem;
+                    z-index: 88;
+                    top: 2.5px;
+                    right: 25.5px;
+                    color: #e3e3e3;
+                    pointer-events: none; /* permette di cliccare sotto questo elemento, rendendolo invisibile agli eventi */
                 }
-
-                #title-sel {
-                    left: -60px;
-                }
-
-                select {
-                width: 23px;
-                background-color: black;
-                border-radius: 30%;
-                border: 2px solid grey;
-                margin: 0 20px 0 5px;
-                cursor: pointer;
-
-                option {
-                    color: white;
-                }
-            }
-
-            svg {
-                position: absolute;
-                font-size: 0.8rem;
-                z-index: 88;
-                top: 2.5px;
-                right: 25.5px;
-                color: #e3e3e3;
-                pointer-events: none; /* permette di cliccare sotto questo elemento, rendendolo invisibile agli eventi */
             }
         }
 
@@ -215,4 +222,6 @@ header {
         }
     }  
 }
+
+@import '../assets/style/mediaqueryHeader.scss';
 </style>

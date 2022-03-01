@@ -1,11 +1,11 @@
 <template>
   <main>
 
-      <h2>Film</h2>
-      <MyFilm :mostraRicerca="mostraRicerca" :movieChosen="movieChosen"/>
+    <h2>Film</h2>
+    <MyFilm :mostraRicerca="mostraRicerca" :movieChosen="movieChosen"/>
 
-      <h2>Serie Televisive</h2>
-      <MySeries :mostraRicercaSerie="mostraRicercaSerie" :tvChosen="tvChosen"/>
+    <h2>Serie Televisive</h2>
+    <MySeries :mostraRicercaSerie="mostraRicercaSerie" :tvChosen="tvChosen"/>
 
   </main>
 </template>
@@ -40,4 +40,28 @@ main {
   }
 }
 
+@media (max-width: 970px) {
+
+  main {
+    padding-left: 100px;
+  }
+
+}
+
+@media (max-width: 640px) {
+
+  main {
+    padding-left: 150px;
+    padding-top: 20px;
+  }
+
+}
+
+@media (max-width: 470px) {
+
+  main {
+    padding-left: 100px;
+  }
+
+}
 </style>
