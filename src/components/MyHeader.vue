@@ -11,26 +11,29 @@
             <!-- creo una lista di lingue tra cui l'utente puo' scegliere per le descrizioni dei film/serie -->
             <div class="contain">
                 <i class="fas fa-chevron-down"></i>
+                <h5>Selezione: {{this.lingua.linguaText}}</h5>
                 <h3>Scegli Lingua</h3>
-                <select v-model="lingua" @change="$emit('langSelected', lingua)">
-                    <option v-for="(lingua, index) in lingueDaMostrare" :key="index" :value="lingua.valoreLingua">{{lingua.linguaText}}</option>
-                </select>
+                <select v-model="lingua" @change="$emit('langSelected', lingua.valoreLingua)">
+                    <option v-for="(lingua, index) in lingueDaMostrare" :key="index" :value="lingua">{{lingua.linguaText}}</option>
+                </select>                                                           <!-- setto il value come un oggetto per poterne ricavare sia il valore numerico che il testo mostrato in contesti diversi -->
             </div>
 
             <!-- prendo il valore dell'opzione selezionata tramite v-model, invio ad App tramite $emit il cambio di valore --> 
             <div class="contain">
                 <i class="fas fa-chevron-down"></i>
+                <h5>Selezione: {{this.selectMovie}}</h5>
                 <h3>Generi Film</h3>
-                <select v-model.number="selectMovie" @change="$emit('genMovie', selectMovie)">
+                <select v-model="selectMovie" @change="$emit('genMovie', selectMovie)">
                     <option value="0">Tutti i Film</option>
                     <option v-for="(genere, indice) in generiFilm" :key="indice" :value="genere.id">{{genere.name}}</option>
-                </select>
+                </select>                                   
             </div>
 
             <div class="contain">
                 <i class="fas fa-chevron-down"></i>
+                <h5>Selezione: {{this.selectSerie}}</h5>
                 <h3>Generi Serie TV</h3> 
-                <select v-model.number="selectSerie" @change="$emit('genSeries', selectSerie)">
+                <select v-model="selectSerie" @change="$emit('genSeries', selectSerie)">
                     <option value="0">Tutte le Serie TV</option>
                     <option v-for="(genere, indice) in generiSerie" :key="indice" :value="genere.id">{{genere.name}}</option>
                 </select>
@@ -151,6 +154,15 @@ header {
             display: flex;
             align-items: center;
             position: relative;
+
+                h5 {
+                    position: absolute;
+                    color: gray;
+                    left: -1px;
+                    top: 18px;
+                    width: 130px;
+                    font-size: 0.7rem;
+                }
 
                 select {
                 width: 23px;
