@@ -11,35 +11,36 @@
             <!-- creo una lista di lingue tra cui l'utente puo' scegliere per le descrizioni dei film/serie -->
             <div class="contain">
                 <i class="fas fa-chevron-down"></i>
-                <h5>Selezione: {{this.lingua.linguaText}}</h5>
+                <h5 id="title-sel">Selezioni:</h5>
+                <h5>{{this.lingua.linguaText == null? "Inglese" : this.lingua.linguaText}}</h5>
                 <h3>Scegli Lingua</h3>
                 <select v-model="lingua" @change="$emit('langSelected', lingua.valoreLingua)">
-                    <option v-for="(lingua, index) in lingueDaMostrare" :key="index" :value="lingua">{{lingua.linguaText}}</option>
+                    <option v-for="(language, index) in lingueDaMostrare" :key="index" :value="language">{{language.linguaText}}</option>
                 </select>                                                           <!-- setto il value come un oggetto per poterne ricavare sia il valore numerico che il testo mostrato in contesti diversi -->
             </div>
 
             <!-- prendo il valore dell'opzione selezionata tramite v-model, invio ad App tramite $emit il cambio di valore --> 
             <div class="contain">
                 <i class="fas fa-chevron-down"></i>
-                <h5>Selezione: {{this.selectMovie.name}}</h5>
+                <h5>{{this.selectMovie.name == null? "Tutti" : this.selectMovie.name}}</h5>
                 <h3>Generi Film</h3>
                 <select v-model="selectMovie" @change="$emit('genMovie', selectMovie.id)">
                     <option value="0">Tutti i Film</option>
                     <option v-for="(genere, indice) in generiFilm" :key="indice" :value="genere">{{genere.name}}</option>
-                </select>                                   
+                </select>                                                        <!-- setto il value come un oggetto per poterne ricavare sia il valore numerico che il testo mostrato in contesti diversi -->
             </div>
 
             <div class="contain">
                 <i class="fas fa-chevron-down"></i>
-                <h5>Selezione: {{this.selectSerie.name}}</h5>
+                <h5>{{this.selectSerie.name  == null? "Tutti" : this.selectSerie.name}}</h5>
                 <h3>Generi Serie TV</h3> 
                 <select v-model="selectSerie" @change="$emit('genSeries', selectSerie.id)">
                     <option value="0">Tutte le Serie TV</option>
                     <option v-for="(genere, indice) in generiSerie" :key="indice" :value="genere">{{genere.name}}</option>
-                </select>
+                </select>                                                         <!-- setto il value come un oggetto per poterne ricavare sia il valore numerico che il testo mostrato in contesti diversi -->
             </div>
 
-            <input v-on:keyup.enter="ricerca" type="text" v-model="cerca">
+            <input v-on:keyup.enter="ricerca" type="text" v-model="cerca" placeholder="Cerca un titolo">
             <button @click="ricerca">CERCA</button>
         </div>
 
@@ -162,6 +163,10 @@ header {
                     top: 18px;
                     width: 130px;
                     font-size: 0.7rem;
+                }
+
+                #title-sel {
+                    left: -60px;
                 }
 
                 select {
