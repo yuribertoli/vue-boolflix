@@ -8,21 +8,12 @@
         <!-- richiamo la funzione ricerca sia al click del bottone, sia alla pressione del tasto Enter(Invio) -->
         <div class="right-header">
 
+            <!-- creo una lista di lingue tra cui l'utente puo' scegliere per le descrizioni dei film/serie -->
             <div class="contain">
                 <i class="fas fa-chevron-down"></i>
                 <h3>Scegli Lingua</h3>
                 <select v-model="lingua" @change="$emit('langSelected', lingua)">
-                    <option value="it-IT">Italiano</option>
-                    <option value="">Inglese</option>
-                    <option value="es-ES">Spagnolo</option>
-                    <option value="pt-PT">Portoghese</option>
-                    <option value="fr-FR">Francese</option>
-                    <option value="de-DE">Tedesco</option>
-                    <option value="ru-RU">Russo</option>
-                    <option value="zh-ZH">Cinese</option>
-                    <option value="hi-HI">Hindi</option>
-                    <option value="ja-JA">Giapponese</option>
-                    <option value="ar-AR">Arabo</option>
+                    <option v-for="(lingua, index) in lingueDaMostrare" :key="index" :value="lingua.valoreLingua">{{lingua.linguaText}}</option>
                 </select>
             </div>
 
@@ -66,7 +57,20 @@ export default {
             generiSerie: [],
             selectSerie: null,
             selectMovie: null,
-            lingua: ""
+            lingua: "",
+            lingueDaMostrare: [
+                {valoreLingua: "it-IT", linguaText: "Italiano"},
+                {valoreLingua: "", linguaText: "Inglese"},
+                {valoreLingua: "es-ES", linguaText: "Spagnolo"},
+                {valoreLingua: "pt-PT", linguaText: "Portoghese"},
+                {valoreLingua: "fr-FR", linguaText: "Francese"},
+                {valoreLingua: "de-DE", linguaText: "Tedesco"},
+                {valoreLingua: "ru-RU", linguaText: "Russo"},
+                {valoreLingua: "zh-ZH", linguaText: "Cinese"},
+                {valoreLingua: "ja-JA", linguaText: "Giapponese"},
+                {valoreLingua: "ar-AR", linguaText: "Arabo"},
+                {valoreLingua: "hi-HI", linguaText: "Hindi"},
+            ]
         }
     },
 
