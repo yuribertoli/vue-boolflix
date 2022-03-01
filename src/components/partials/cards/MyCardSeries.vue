@@ -4,7 +4,8 @@
 
         <div class="front movie">
 
-            <img :src="`http://image.tmdb.org/t/p/w${widthMovie}${serie.poster_path}`" :alt="serie.name">
+            <img v-if="serie.poster_path" :src="`http://image.tmdb.org/t/p/w${widthMovie}${serie.poster_path}`" :alt="serie.name">
+            <img v-else src="../../../assets/img/unknown.jpg" alt="img not found">
 
         </div>
 
@@ -19,6 +20,9 @@
             <span class="voto">Voto: {{serie.vote_average}}</span>
 
             <div class="stars">
+
+                <!-- <i class="fas fa-star" v-for="(number,index) in Math.floor(calcVoto)" :key="index"></i>
+                <i class="fas fa-star-half-alt" v-for="(number,index) in calcVoto % 1" :key="index"></i> -->
 
                 <div class="stelle" v-if="serie.vote_average >= 0 && serie.vote_average < 1">
                     <!-- mezza stella tra 0 e 1 --> <i class="fas fa-star-half-alt"></i> 
@@ -130,7 +134,13 @@ export default {
                 console.log(error);
             });
         }
-    }
+    },
+
+    /* computed: {
+        calcVoto(){ //arrotondo il voto ricevuto all'intero più vicino
+            return Math.round(this.serie.vote_average) / 2;
+        }
+    } */
 }
 </script>
 

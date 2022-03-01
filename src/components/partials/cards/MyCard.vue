@@ -4,7 +4,8 @@
 
         <div class="front movie">
         
-            <img :src="`http://image.tmdb.org/t/p/w${widthMovie}${film.poster_path}`" :alt="film.title">
+            <img v-if="film.poster_path" :src="`http://image.tmdb.org/t/p/w${widthMovie}${film.poster_path}`" :alt="film.title">
+            <img v-else src="../../../assets/img/unknown.jpg" alt="img not found">
 
         </div> 
 

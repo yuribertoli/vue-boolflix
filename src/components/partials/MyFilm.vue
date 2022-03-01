@@ -25,35 +25,21 @@ export default {
         'movieChosen': Number
     },
 
-    data(){
-        return{
-            ricercaUtente: this.mostraRicerca,
-            filmScelto: this.movieChosen
-        }
-    },
-
     computed: {
-        filtroGeneri(){
-            if (this.movieChosen == 0) {
+        filtroGeneri(){ //se il valore del genere scelto è 0 (quindi l'utente ha selezionato "Tutti i film" option)
+                        //oppure se è null (quindi all'avvio del DOM quando non ci sono ancora state scelte da parte dell'utente)
+            if (this.movieChosen == 0 || this.movieChosen == null) {
 
-                return this.ricercaUtente;
+                return this.mostraRicerca; //mostro l'array completo
 
-            } else {
+            }  else {
 
-                let filtro = [];
-
-                for (let i=0; i<this.ricercaUtente.length; i++){
-
-                    if (this.ricercaUtente[i].genre_ids.includes(this.filmScelto)){
-                        filtro.push(this.ricercaUtente[i])
-                    }
-                }
-
-                this.ricercaUtente = filtro;
-
-                console.log(filtro);
-                return filtro;
-            } 
+                //in tutti gli altri casi mostro solo i film (quindi l'oggetto dell'array che gli contiene)
+                //filtrati tramite un array dove contengono i codici dei generi film, se corrispondono al codice del genere scelto dall'utente allora li mostro
+                return this.mostraRicerca.filter( oggetto => {
+                    return oggetto.genre_ids.includes(this.movieChosen);
+                })
+            }  
         }
     }
 }

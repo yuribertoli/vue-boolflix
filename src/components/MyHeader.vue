@@ -91,7 +91,12 @@ export default {
 
 <style scoped lang="scss">
 header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
     height: 50px;
+    width: 100%;
     background-color: black;
     display: flex;
     justify-content: space-between;
