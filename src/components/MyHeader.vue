@@ -8,14 +8,16 @@
         <!-- richiamo la funzione ricerca sia al click del bottone, sia alla pressione del tasto Enter(Invio) -->
         <div class="right-header">
 
-            <!-- prendo il valore dell'opzione selezionata tramite v-model, invio ad App tramite $emit il cambio di valore -->  
+            <!-- prendo il valore dell'opzione selezionata tramite v-model, invio ad App tramite $emit il cambio di valore --> 
+            <h3>Generi Serie TV</h3> 
             <select v-model.number="selectSerie" @change="$emit('genSeries', selectSerie)">
-                <option value="0">Generi Serie TV</option>
+                <option value="0">Tutte le Serie TV</option>
                 <option v-for="(genere, indice) in generiSerie" :key="indice" :value="genere.id">{{genere.name}}</option>
             </select>
 
+            <h3>Generi Film</h3>
             <select v-model.number="selectMovie" @change="$emit('genMovie', selectMovie)">
-                <option value="0">Generi Film</option>
+                <option value="0">Tutti i Film</option>
                 <option v-for="(genere, indice) in generiFilm" :key="indice" :value="genere.id">{{genere.name}}</option>
             </select>
 
@@ -110,6 +112,20 @@ header {
     .right-header {
         display: flex;
         align-items: center;
+
+        h3 {
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        select {
+            width: 23px;
+            background-color: white;
+            border-radius: 30%;
+            border: 2px solid grey;
+            margin: 0 20px 0 5px;
+            cursor: pointer;
+        }
 
         input {
             width: 200px;
